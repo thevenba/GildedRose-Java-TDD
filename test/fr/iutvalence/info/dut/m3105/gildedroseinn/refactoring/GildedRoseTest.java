@@ -10,24 +10,27 @@ public class GildedRoseTest
 {
 	@Test
 	public void testingUpdateItemsShouldLowerSellInAndQualityValuesForEveryItems()
-	{
-		 ArrayList<Item> items = new ArrayList<Item>(); 
-		 items.add(new Item("+5 Dexterity Vest", 10, 20)); 
-		 items.add(new Item("Elixir of the Mongoose", 5, 7));
-		 GildedRose.updateItems(items);
-		 assertEquals(9, items.get(0).getSellIn());
-		 assertEquals(19, items.get(0).getQuality());
-		 assertEquals(4, items.get(1).getSellIn());
-		 assertEquals(6, items.get(1).getQuality()); 
+	{ 
+		 Item item = new Item("+5 Dexterity Vest", 10, 20); 
+		 GildedRose.updateItem(item);
+		 assertEquals(9, item.getSellIn());
+		 assertEquals(19, item.getQuality());
 	}
 	
 	@Test
 	public void testingUpdateItemsWhenSellInBecomesNegativeShouldLowerQualityTwice()
 	{
-		ArrayList<Item> items = new ArrayList<Item>();
-		items.add(new Item("Elixir of the Mongoose", 0, 7));
-		GildedRose.updateItems(items);
-		assertEquals(-1, items.get(0).getSellIn());
-		assertEquals(5, items.get(0).getQuality());
+		Item item = new Item("Elixir of the Mongoose", 0, 7);
+		GildedRose.updateItem(item);
+		assertEquals(-1, item.getSellIn());
+		assertEquals(5, item.getQuality());
+	}
+	
+	@Test
+	public void testingUpdateItemsShouldNeverLowerQualityToNegative()
+	{
+		Item item = new Item("Elixir of the Mongoose", 0, 1);
+		GildedRose.updateItem(item);
+		assertEquals(0, item.getQuality());
 	}
 }
