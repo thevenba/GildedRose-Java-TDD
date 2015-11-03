@@ -9,18 +9,18 @@ import org.junit.Test;
 public class GildedRoseTest
 {
 	@Test
-	public void testingUpdateItemsShouldLowerSellInAndQualityValuesForEveryItems()
+	public void testingUpdateItemShouldLowerSellInAndQualityValues()
 	{ 
-		 Item item = new Item("+5 Dexterity Vest", 10, 20); 
+		 Item item = new Item(null, 10, 20); 
 		 GildedRose.updateItem(item);
 		 assertEquals(9, item.getSellIn());
 		 assertEquals(19, item.getQuality());
 	}
 	
 	@Test
-	public void testingUpdateItemsWhenSellInBecomesNegativeShouldLowerQualityTwice()
+	public void testingUpdateItemWhenSellInBecomesNegativeShouldLowerQualityTwice()
 	{
-		Item item = new Item("Elixir of the Mongoose", 0, 7);
+		Item item = new Item(null, 0, 7);
 		GildedRose.updateItem(item);
 		assertEquals(-1, item.getSellIn());
 		assertEquals(5, item.getQuality());
@@ -29,8 +29,11 @@ public class GildedRoseTest
 	@Test
 	public void testingUpdateItemsShouldNeverLowerQualityToNegative()
 	{
-		Item item = new Item("Elixir of the Mongoose", 0, 1);
-		GildedRose.updateItem(item);
-		assertEquals(0, item.getQuality());
+		ArrayList<Item> items = new ArrayList<Item>();
+		items.add(new Item(null, 0, 1));
+		items.add(new Item(null, 1, 0));
+		GildedRose.updateItems(items);
+		assertEquals(0, items.get(0).getQuality());
+		assertEquals(0, items.get(1).getQuality());
 	}
 }

@@ -26,9 +26,23 @@ public class GildedRose
 	public static void updateItem(Item item)
 	{	
 		item.lowerSellIn();
+		if(item.getQuality() == 0)
+			return;
 		item.lowerQuality();
+		updateItemWhenSellInIsNegative(item);
+
+	}
+
+	/**
+	 * @param item
+	 */
+	private static void updateItemWhenSellInIsNegative(Item item)
+	{
 		if(item.getSellIn() < 0)
-			item.lowerQuality();
+			if(item.getQuality() == 0)
+				return;
+			else
+				item.lowerQuality();
 	}
 
 }
