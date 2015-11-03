@@ -18,7 +18,7 @@ public class Item
 		return this.name;
 	}
 
-	public void setName(String name)
+	private void setName(String name)
 	{
 		this.name = name;
 	}
@@ -28,7 +28,7 @@ public class Item
 		return this.sellIn;
 	}
 
-	public void setSellIn(int sellIn)
+	private void setSellIn(int sellIn)
 	{
 		this.sellIn = sellIn;
 	}
@@ -38,8 +38,18 @@ public class Item
 		return this.quality;
 	}
 
-	public void setQuality(int quality)
+	private void setQuality(int quality)
 	{
 		this.quality = quality;
+	}
+	
+	public void lowerSellIn()
+	{
+		this.setSellIn(this.getSellIn()-1);
+	}
+	
+	public void lowerQuality()
+	{
+		this.setQuality(this.getQuality()-1);
 	}
 }
