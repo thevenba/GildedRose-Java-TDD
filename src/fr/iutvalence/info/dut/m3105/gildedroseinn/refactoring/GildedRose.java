@@ -27,6 +27,8 @@ public class GildedRose
 	{	
 		item.lowerSellIn();
 		item.lowerQuality();
+		if(item.getSellIn() < 0)
+			item.lowerQuality();
 	}
 
 }

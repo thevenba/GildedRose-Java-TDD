@@ -20,5 +20,14 @@ public class GildedRoseTest
 		 assertEquals(4, items.get(1).getSellIn());
 		 assertEquals(6, items.get(1).getQuality()); 
 	}
-
+	
+	@Test
+	public void testingUpdateItemsWhenSellInBecomesNegativeShouldLowerQualityTwice()
+	{
+		ArrayList<Item> items = new ArrayList<Item>();
+		items.add(new Item("Elixir of the Mongoose", 0, 7));
+		GildedRose.updateItems(items);
+		assertEquals(-1, items.get(0).getSellIn());
+		assertEquals(5, items.get(0).getQuality());
+	}
 }
